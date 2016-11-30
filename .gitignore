@@ -3,7 +3,8 @@ www/build
 node_modules
 typings
 plugins
-platforms
+platforms/android
+platforms/browser
 
 # others
 /.idea
