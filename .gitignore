@@ -1,0 +1,12 @@
+# app
+www/build
+node_modules
+typings
+plugins
+platforms
+
+# others
+/.idea
+.DS_Store
+.vscode
+.tmp
