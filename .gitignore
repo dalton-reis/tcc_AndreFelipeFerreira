@@ -5,6 +5,7 @@ typings
 plugins
 platforms/android
 platforms/browser
+platforms/ios//andrefferreira.xcodeproj/project.xcworkspace/xcuserdata
 
 # others
 /.idea
