@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html  ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Tagarela</title>
+      
+      <link href="css/jquery.mobile-1.1.2.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>	
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/app2.css" rel="stylesheet" type="text/css" media="screen">  
+      
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="cordova.js"></script>
+
+	
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/vendor/modernizr.js"></script>
+	<script src="js/db/database.js"></script>
+	<script src="js/db/sinc-dados.js"></script>
+    <script src="js/zera-globais.js"></script>
+	<script src="js/index.js"></script>
+      <script src="js/usar-pranchaLN.js"></script>
+      
+	<script>
+	angular.module('ionicApp', ['ionic']).controller('MyCtrl', function($scope) {});
+	</script>
+  </head>
+  <body ng-controller="MyCtrl">
+       <ion-header-bar class="bar-positive">
+           <h1 class="title">Login</h1>
+       </ion-header-bar>
+
+        <ion-content>
+            <a href="javascript:window.history.go(-1)"><button class="button button-full button-large button-assertive"></button></a>
+            <a href="javascript:preparaImagem()"><button class="button button-full button-large button-balanced"></button></a>
+        </ion-content>
+            <style>
+			    img {position: relative;}
+		    </style>
+        <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;" id="divAuxiliar">
+        </div>
+      <canvas hidden width='1000', height='1000' id='canvasAux'></canvas>
+            <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;" id="imagemLN">
+                
+            </div>
+            
+            <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;">
+                <canvas id="canvas2" style="background:transparent;" ng-mousedown="downEvent($event)" on-touch="downEvent($event)" ng-mousemove="dragEvent($event)" on-drag="dragEvent($event)" ng-mouseup="upEvent($event)" on-release="upEvent($event)"></canvas>
+            </div>
+            <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;" id="imagemLN">
+                <div id='predador'  height="100%"></div>
+                <div id='presa1' width="100%" height="100%"></div>
+                <div id='presa2' width="100%" height="100%"></div>
+                <div id='presa3' width="100%" height="100%"></div>
+                <div id='presa4' width="100%" height="100%"></div>
+                <div id='presa5' width="100%" height="100%"></div>
+            </div>
+            <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;z-index:999">
+                <canvas id="canvas" style="background:transparent;" ng-mousedown="downEvent($event)" on-touch="downEvent($event)" ng-mousemove="dragEvent($event)" on-drag="dragEvent($event)" ng-mouseup="upEvent($event)" on-release="upEvent($event)"></canvas>
+            </div>
+            <div style="position: absolute; top:200px; left:300px; width:500px;height:500px;z-index:996">
+                <canvas id="canvasTeste" style="background:transparent;" ng-mousedown="downEvent($event)" on-touch="downEvent($event)" ng-mousemove="dragEvent($event)" on-drag="dragEvent($event)" ng-mouseup="upEvent($event)" on-release="upEvent($event)"></canvas>
+            </div>
+            <pre id="output"></pre>
+
+	</body>
+</html>

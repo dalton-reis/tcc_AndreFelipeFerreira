@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Tagarela</title>
+      
+      <link href="css/jquery.mobile-1.1.2.min.css" rel="stylesheet" type="text/css" media="screen">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>	
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/app2.css" rel="stylesheet" type="text/css" media="screen">  
+      
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="cordova.js"></script>
+
+	
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/vendor/modernizr.js"></script>
+    <script src="js/db/database.js"></script>
+	<script src="js/db/sinc-dados.js"></script>
+    <script src="js/usar-plano.js"></script>
+      
+	<script>
+	angular.module('ionicApp', ['ionic']).controller('MyCtrl', function($scope) {});
+	</script>
+  </head>
+  <body ng-controller="MyCtrl">
+    
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Pranchas Disponíveis (Interação)</h1>
+    </ion-header-bar>
+
+    <ion-content style="height:100%">
+
+          <!-- The list directive is great, but be sure to also checkout the collection repeat directive when scrolling through large lists -->
+        <button class="button button-full button-large button-assertive" onclick="location.href='builder.html'"></button>
+        <div style="display: table;margin: 0 auto;" class="pranchas">
+
+        </div>
+        <div class="caixa-loading"></div>
+    </ion-content>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
