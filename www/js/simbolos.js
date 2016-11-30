@@ -108,7 +108,6 @@ $(document).ready(function() {
 	}
 	function transSimbsEscolher(tx) {
     	var catSel = localStorage.catSel;
-        alert(catSel);
         tx.executeSql("SELECT id, img, audio FROM simbolos WHERE categoria = ?", [catSel], okQuerySimbsEscolher, nokQuery);
     }
     function okQuerySimbsEscolher(tx, results) {
@@ -209,7 +208,8 @@ $(document).ready(function() {
 					localStorage.idSimb9 = Number(alt);
 				}
 			});
-	    }else {
+	    }
+	    else {
 	    	alert("Não há símbolos nesta categoria!");
 	    }
     }

@@ -17,6 +17,7 @@
 
 	
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/vendor/modernizr.js"></script>
 	<script src="js/db/database.js"></script>
 	<script src="js/db/sinc-dados.js"></script>
 	<script src="js/criar-usuario.js"></script>
@@ -52,21 +53,18 @@
                     <span class="input-label">Senha</span>
                     <input type="password" id="password" class="senha" placeholder="Senha">
                 </label>
-<div class="list">
-
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Perfil
-    </div>
-    <select name="perfil" class="perfil">
-      <option value="2">Tutor</option>
-      <option value="3">Paciente</option>
-    </select>
-  </label>
-
-</div>
-        
+               <label class="item item-input">
+                    <i class="icon ion-person-stalker placeholder-icon"></i>
+                    <span class="input-label">Perfil</span>
+                </label>
+                <ion-list>
+                  <ion-radio ng-model="choice" name="perfil" ng-value="2">Tutor</ion-radio>
+                  <ion-radio ng-model="choice" name="perfil" ng-value="3">Paciente</ion-radio>
+                </ion-list>
+                  
+            </div>
         </form>
     </ion-content>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@
         <button class="button button-full button-large button-assertive" onclick="location.href='index.html'"></button>
         <div style="display: table;margin: 0 auto;">
             <a href="#" onclick="$('#info').show()" class="foto-img"></a>
-            <div id="info" style="display: none; height:200px" class="modal center-align">
+            <div id="info" style="display: none" class="modal center-align">
                 <div class="modal-content">
 				    <h3 >Informações Pessoais</h3><hr>
                     <p class="info-nome"><b>Nome:</b></p>
@@ -48,20 +48,7 @@
                     <button class="button button-assertive" onclick="$('#info').hide()">Fechar</button>
 			    </div>
 			</div>
-            
-            </div>	
-        </div>
-        <div class="convites" style="display: table;margin: 0 auto;">
-        </div>
-        <hr>
-        <ion-scroll zooming="true" direction="x">
-          <div class="item builders" style="display: table;margin: 0 auto;">
-          </div>
-            
-        </ion-scroll>
-        <div class="caixa-loading"></div>
-    </ion-content>
-    <div id="alterar-info" style="display: none; height: 900px;"  class="modal" style="height:100%">
+            <div id="alterar-info"  style="display: none" class="modal" style="height:100%">
 				<div class="modal-content">
 					<h3>Informações Pessoais</h3>
                     <hr>
@@ -82,13 +69,23 @@
                                 <span class="input-label">Telefone</span>
                                 <input type="text" id="tel" class="input-tel" placeholder="Telefone">
                             </label>
-                            <div class="center-align">
-                            <button href="#!" class="button button-positive button-salvar">Salvar</button>
-                            <button href="#!" class="button button-assertive" onclick="$('#alterar-info').hide()">Fechar</button>
-                                </div>
+                            <button href="#!" class="button button-full button-large button-balanced button-salvar">Salvar</button>
+                            <button href="#!"  onclick="$('#alterar-info').hide()" class="button button-full button-large button-assertive">Fechar</button>
                         </div>
 				    </form>
 				</div>
+            </div>	
+        </div>
+        <div class="convites" style="display: table;margin: 0 auto;">
+        </div>
+        <hr>
+        <ion-scroll zooming="true" direction="x">
+          <div class="item builders" style="display: table;margin: 0 auto;">
+          </div>
+            
+        </ion-scroll>
+        <div class="caixa-loading"></div>
+    </ion-content>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 </html>

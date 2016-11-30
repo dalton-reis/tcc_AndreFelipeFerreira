@@ -33,7 +33,7 @@ $(document).ready(function() {
                                                                           
 		$(".convites").append("<a href='convites/enviar-convite.html'><img src='img/enviar-convite.png' style='max-width: 200px;' /></a>");
     else
-    	$(".convites").append("<a href='convites/acc-convite.html'><img src='img/aceitar-convite.png' style='max-width: 200px;' /></a>");
+    	$(".convites").append("<a href='convites/acc-convite.html'><img src='img/enviar-convite.png' style='max-width: 200px;' /></a>");
     	
 	/*var dados = {
 		"idUser" : localStorage.idUser,
@@ -109,11 +109,9 @@ $(document).ready(function() {
 					break;
 			}
 	    	if (localStorage.dinamico == "iOS") {
-            //    $(".foto-img").html("<img src='img/"+ret.fotoImg+"' title='"+ret.fotoAudio+"' alt='' class='left' style='margin:25px; border:10px solid "+corBorda+"' height='175' width='175' />");
 				$(".foto-img").html("<img src='img/"+results.rows.item(i).img+"' title='"+results.rows.item(i).audio+"' alt='' class='left' style='margin:25px; border:10px solid "+corBorda+"' height='175' width='175' />");
 	    	}else {
-            //    $(".foto-img").html("<img src='img/"+ret.fotoImg+"' title='"+ret.fotoAudio+"' alt='' class='left' style='margin:25px; border:10px solid "+corBorda+"' height='175' width='175' />");
-	            $(".foto-img").html("<img src='"+results.rows.item(i).img+"' title='"+results.rows.item(i).audio+"' alt='' class='left' style='margin:25px; border:10px solid "+corBorda+"' height='175' width='175' />");
+	    		$(".foto-img").html("<img src='"+results.rows.item(i).img+"' title='"+results.rows.item(i).audio+"' alt='' class='left' style='margin:25px; border:10px solid "+corBorda+"' height='175' width='175' />");
 	    	}
 	    }
 	    db.transaction(transInfoHome, nokQuery);

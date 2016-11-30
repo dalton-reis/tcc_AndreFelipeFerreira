@@ -26,13 +26,11 @@ function criarTab(tx) {
 
 	tx.executeSql('CREATE TABLE IF NOT EXISTS builder (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, paciente INTEGER, esp_tut INTEGER, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS convites (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, paciente INTEGER, esp_tut INTEGER, msg TEXT, sinc INTEGER)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS historico (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, idLog INTEGER, presa1 INTEGER, presa2 INTEGER, presa3 INTEGER, presa4 INTEGER, presa5 INTEGER, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS info (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, usuario INTEGER, nome TEXT, email TEXT, telefone TEXT, sinc INTEGER)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS letrasNumeros (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT, img TEXT, audio TEXT, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS log (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, builder INTEGER, prancha INTEGER, data_hora TEXT, atividade TEXT, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS observacoes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, builder INTEGER, descricao TEXT, obs TEXT, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS planos (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, builder INTEGER, simbolo INTEGER, sinc INTEGER)');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS pranchas (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, tipo INTEGER, plano INTEGER, simb_prancha INTEGER, simb1 INTEGER, simb2 INTEGER, simb3 INTEGER, simb4 INTEGER, simb5 INTEGER, simb6 INTEGER, simb7 INTEGER, simb8 INTEGER, simb9 INTEGER, sinc INTEGER)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS pranchas (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, plano INTEGER, simb_prancha INTEGER, simb1 INTEGER, simb2 INTEGER, simb3 INTEGER, simb4 INTEGER, simb5 INTEGER, simb6 INTEGER, simb7 INTEGER, simb8 INTEGER, simb9 INTEGER, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS simbolos (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT, significado TEXT, categoria INTEGER, img TEXT, audio TEXT, sinc INTEGER)');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, usuario TEXT, senha TEXT, perfil INTEGER, simbolo INTEGER, sinc INTEGER)');
 }
@@ -752,7 +750,7 @@ function localPlanos(tx) {
 // CONSISTENCIA DA TABELA DE PRANCHAS *******************************************************************************************************************************************************
 function consPranchas(tx) {
     teste = 38;
-	tx.executeSql("SELECT id,tipo,plano,simb_prancha,simb1,simb2,simb3,simb4,simb5,simb6,simb7,simb8,simb9,sinc FROM pranchas WHERE sinc <> 0", [], okConsPranchas, nokTransSinc);
+	tx.executeSql("SELECT id,plano,simb_prancha,simb1,simb2,simb3,simb4,simb5,simb6,simb7,simb8,simb9,sinc FROM pranchas WHERE sinc <> 0", [], okConsPranchas, nokTransSinc);
 }
 function okConsPranchas(tx, results) {
    	var len = results.rows.length;
@@ -760,7 +758,6 @@ function okConsPranchas(tx, results) {
     for (var i=0; i<len; i++) {
     	var dados = {
 			"id" : results.rows.item(i).id,
-            "tipo" : results.rows.item(i).tipo,
 			"plano" : results.rows.item(i).plano,
 			"simbPrancha"   : results.rows.item(i).simb_prancha,
 			"simb1"   : results.rows.item(i).simb1,
@@ -807,7 +804,6 @@ function okConsPranchas(tx, results) {
 function updatePrancha(tx) {
 	tx.executeSql("UPDATE pranchas SET sinc = 0 WHERE sinc <> 0");
 }
-var pranchasTipo = [];
 var pranchasPlano = [];
 var pranchasSimbprancha = [];
 var pranchasSimb1 = [];
@@ -834,7 +830,6 @@ function selectPranchas(tx) {
 		    }
 		    else {
 		    	for	(var i = 0; i < ret.pranchasPlano.length; i++) {
-                    pranchasTipo[i] = ret.pranchasTipo[i];
 					pranchasPlano[i] = ret.pranchasPlano[i];
 					pranchasSimbprancha[i] = ret.pranchasSimbprancha[i];
 					pranchasSimb1[i] = ret.pranchasSimb1[i];
@@ -858,9 +853,9 @@ function selectPranchas(tx) {
 }
 function localPranchas(tx) {
 	tx.executeSql('DROP TABLE IF EXISTS pranchas');
-	tx.executeSql('CREATE TABLE IF NOT EXISTS pranchas (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, tipo INTEGER, plano INTEGER, simb_prancha INTEGER, simb1 INTEGER, simb2 INTEGER, simb3 INTEGER, simb4 INTEGER, simb5 INTEGER, simb6 INTEGER, simb7 INTEGER, simb8 INTEGER, simb9 INTEGER, sinc INTEGER)');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS pranchas (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, plano INTEGER, simb_prancha INTEGER, simb1 INTEGER, simb2 INTEGER, simb3 INTEGER, simb4 INTEGER, simb5 INTEGER, simb6 INTEGER, simb7 INTEGER, simb8 INTEGER, simb9 INTEGER, sinc INTEGER)');
 	for	(var i = 0; i < pranchasPlano.length; i++) {
-		tx.executeSql("INSERT INTO pranchas (tipo,plano,simb_prancha,simb1,simb2,simb3,simb4,simb5,simb6,simb7,simb8,simb9,sinc) VALUES (?,?,?,?,?,?,?,?,?,?,?,0)", [pranchasTipo[i],pranchasPlano[i],pranchasSimbprancha[i],pranchasSimb1[i],pranchasSimb2[i],pranchasSimb3[i],pranchasSimb4[i],pranchasSimb5[i],pranchasSimb6[i],pranchasSimb7[i],pranchasSimb8[i],pranchasSimb9[i]]);
+		tx.executeSql("INSERT INTO pranchas (plano,simb_prancha,simb1,simb2,simb3,simb4,simb5,simb6,simb7,simb8,simb9,sinc) VALUES (?,?,?,?,?,?,?,?,?,?,?,0)", [pranchasPlano[i],pranchasSimbprancha[i],pranchasSimb1[i],pranchasSimb2[i],pranchasSimb3[i],pranchasSimb4[i],pranchasSimb5[i],pranchasSimb6[i],pranchasSimb7[i],pranchasSimb8[i],pranchasSimb9[i]]);
 	}
 }
 
@@ -1085,106 +1080,3 @@ function successUpload(entry) {
 function failUpload(error) {
    	alert("Erro ao enviar arquivo para o servidor!");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// CONSISTENCIA DA TABELA DE LETRASNUMEROS *******************************************************************************************************************************************************
-function consPranchas(tx) {
-    teste = 38;
-	tx.executeSql("SELECT id,nome,img,audio,sinc FROM letrasNumeros WHERE sinc <> 0", [], okConsPranchas, nokTransSinc);
-}
-function okConsPranchas(tx, results) {
-   	var len = results.rows.length;
-    var cont = 0;
-    for (var i=0; i<len; i++) {
-    	var dados = {
-			"id" : results.rows.item(i).id,
-            "nome" : results.rows.item(i).nome,
-			"img" : results.rows.item(i).img,
-			"audio"   : results.rows.item(i).audio,
-		};    
-		$.ajax({
-		    type     : "post",
-		    url      : "http://intonses.com.br/tagarela/scripts/db/ins-letras.php",
-		    data     : dados,
-		    dataType : "json",
-		    success  : function(ret) {
-		    	if (ret.erro) {
-			    	alert(ret.msg);
-			    }
-			    else {
-                    teste = 39;
-			    	db.transaction(updateLetras, nokTransSinc, okTransSinc);
-				}			    	
-		    },
-		    error    : function(ret) {
-		    	alert("Erro ao consistir a tabela de letras!");
-		    },
-		    complete:  function() { 
-				cont++;
-				if (cont == len){
-                    teste = 40;
-					db.transaction(selectLetras, nokTransSinc, okTransSinc);
-                }
-		   	}
-		});
-    }
-    if (len == 0){
-        teste = 41;
-    	db.transaction(selectLetras, nokTransSinc, okTransSinc);
-    }
-}
-function updateLetras(tx) {
-	tx.executeSql("UPDATE letrasNumeros SET sinc = 0 WHERE sinc <> 0");
-}
-var letrasNome = [];
-var letrasImg = [];
-var letrasAudio = [];
-function selectLetras(tx) {
-	var dados = {
-		"aux" : 1
-	};    
-	$.ajax({
-	    type     : "post",
-	    url      : "http://intonses.com.br/tagarela/scripts/db/sel-letras.php",
-	    data     : dados,
-	    dataType : "json",
-	    success  : function(ret) {
-	    	if (ret.erro) {
-		    	alert(ret.msg);
-		    }
-		    else {
-		    	for	(var i = 0; i < ret.letrasNome.length; i++) {
-                    letrasNome[i] = ret.letrasNome[i];
-					letrasImg[i] = ret.letrasImg[i];
-					letrasAudio[i] = ret.letrasAudio[i];
-				}
-                teste = 42;
-				db.transaction(localLetras, nokTransSinc, okTransSinc);
-		    }    	
-	    },
-	    error    : function(ret) {
-	    	alert("Erro ao consistir a tabela de letras!");
-	    }
-	});
-}
-function localLetras(tx) {
-	tx.executeSql('DROP TABLE IF EXISTS letrasNumeros');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS letrasNumeros (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome TEXT, img TEXT, audio TEXT, sinc INTEGER)');
-	for	(var i = 0; i < pranchasPlano.length; i++) {
-		tx.executeSql("INSERT INTO letrasNumeros (nome,img,audio,sinc) VALUES (?,?,?,?,?,?,?,?,?,?,?,0)", [letrasNome[i],letrasImg[i],letrasAudio[i]]);
-	}
-}
-
-
-
-
