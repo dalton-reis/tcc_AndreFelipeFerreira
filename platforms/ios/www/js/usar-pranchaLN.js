@@ -179,7 +179,8 @@ $(document).ready(function usarPrancha() {
 		"dataHora" : dataHora,
 		"atv" : atv,
 		"idPrancha" : localStorage.idPrancha,
-		"gravarLog" : localStorage.gravarLog
+		"gravarLog" : localStorage.gravarLog,
+        "plano" : localStorage.idPlano
 	};    
 	$.ajax({
 	    type     : "post",
@@ -191,6 +192,12 @@ $(document).ready(function usarPrancha() {
 	   		if (ret.erro) {
 		    	alert(ret.msg);
 		    }  else {
+                if(ret.idAnt != 0){
+                    $("#pranchaAnt").append("<img src='img/"+ret.simbAnt+"' alt='"+ret.idAnt+"' class='img-prancha' id='imgPranchaAnt=' style=width:100px;height:100px;'>");
+                }
+                if(ret.idProx != 0){
+                    $("#pranchaProx").append("<img src='img/"+ret.simbProx+"' alt='"+ret.idProx+"' class='img-prancha' id='imgPranchaprox' style='width:100px;height:100px;'>");
+                }
                 var conteudo = "<img src='img/"+ret.simb_prancha+"' id='minhaImagem' style='width:500px;height:500px;'>";
                 var conteudo2 = "<img src='img/"+ret.simb_prancha+"' id='minhaImagemAux' style='width:1000px;height:1000px;' hidden>";
                 $("#imagemLN").append(conteudo);
@@ -212,6 +219,11 @@ $(document).ready(function usarPrancha() {
   				audioElement.setAttribute("src",src);
     			audioElement.play();
 			});        
+            $(".img-prancha").click(function() {
+		  		var alt = $(this).attr("alt");
+		  		localStorage.idPrancha = Number(alt);
+                location.reload();
+			});
 	   	},
         timeout: 5000
 	});
